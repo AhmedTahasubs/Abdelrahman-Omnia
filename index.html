@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdelrahman & Omnia - Wedding Invitation</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="./WhatsApp Image 2025-07-16 at 18.58.55_71add0f0.jpg" type="image/x-icon">
     <style>
@@ -19,6 +20,44 @@
             overflow-x: hidden;
             background: linear-gradient(135deg, #ffeef8 0%, #f0e6ff 50%, #e6f3ff 100%);
             min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        body.rtl {
+            direction: rtl;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+            border-radius: 20px;
+            color: #ff69b4;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: #ff69b4;
+            color: white;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
         }
 
         /* Floating Hearts Animation */
@@ -140,6 +179,11 @@
             text-transform: uppercase;
         }
 
+        .rtl .wedding-title {
+            font-family: 'Cairo', sans-serif;
+            letter-spacing: 1px;
+        }
+
         .couple-names-container {
             display: flex;
             align-items: center;
@@ -159,6 +203,10 @@
             background-clip: text;
             animation: glow 3s ease-in-out infinite alternate;
             text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .rtl .bride-name, .rtl .groom-name {
+            font-family: 'Amiri', serif;
         }
 
         .ampersand {
@@ -297,6 +345,10 @@
             gap: 1rem;
         }
 
+        .rtl .section-title {
+            font-family: 'Amiri', serif;
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
             position: relative;
@@ -322,6 +374,11 @@
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
             background: rgba(255, 255, 255, 0.8);
+        }
+
+        .rtl .form-group input,
+        .rtl .form-group textarea {
+            font-family: 'Cairo', sans-serif;
         }
 
         .form-group input:focus,
@@ -353,6 +410,10 @@
             gap: 0.8rem;
             position: relative;
             overflow: hidden;
+        }
+
+        .rtl .submit-btn {
+            font-family: 'Cairo', sans-serif;
         }
 
         .submit-btn::before {
@@ -408,6 +469,16 @@
             .wedding-title {
                 font-size: 1rem;
             }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
         }
 
         /* Scroll indicator */
@@ -439,6 +510,12 @@
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+        <button class="lang-btn" onclick="switchLanguage('ar')">العربية</button>
+    </div>
+
     <!-- Floating Hearts -->
     <div class="hearts-container" id="heartsContainer"></div>
 
@@ -451,13 +528,13 @@
                     <i class="fas fa-ring"></i>
                     <i class="fas fa-heart"></i>
                 </div>
-                <h2 class="wedding-title">You're Invited to Celebrate</h2>
+                <h2 class="wedding-title" data-en="You're Invited to Celebrate" data-ar="أنت مدعو للاحتفال">You're Invited to Celebrate</h2>
             </div>
             
             <div class="couple-names-container">
-                <span class="bride-name">Abdelrahman</span>
+                <span class="bride-name" data-en="Abdelrahman" data-ar="عبدالرحمن">Abdelrahman</span>
                 <span class="ampersand">&</span>
-                <span class="groom-name">Omnia</span>
+                <span class="groom-name" data-en="Omnia" data-ar="أمنية">Omnia</span>
             </div>
             
             <div class="decorative-divider">
@@ -468,10 +545,10 @@
             
             <p class="wedding-date">
                 <i class="fas fa-calendar-heart"></i>
-                Together Forever
+                <span data-en="Together Forever" data-ar="معاً إلى الأبد">Together Forever</span>
             </p>
             
-            <p class="wedding-quote">
+            <p class="wedding-quote" data-en="Two souls with but a single thought, two hearts that beat as one" data-ar="روحان بفكر واحد، قلبان ينبضان كواحد">
                 Two souls with but a single thought, two hearts that beat as one
             </p>
             
@@ -491,26 +568,26 @@
         <div class="congratulations-card">
             <h2 class="section-title">
                 <i class="fas fa-envelope-heart"></i>
-                Send Your Wishes
+                <span data-en="Send Your Wishes" data-ar="أرسل تهانيك">Send Your Wishes</span>
             </h2>
             <form id="congratulationsForm">
                 <div class="form-group">
                     <label for="name">
                         <i class="fas fa-user"></i>
-                        Your Name
+                        <span data-en="Your Name" data-ar="اسمك">Your Name</span>
                     </label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    <input type="text" id="name" name="name" required data-placeholder-en="Enter your full name" data-placeholder-ar="أدخل اسمك الكامل" placeholder="Enter your full name">
                 </div>
                 <div class="form-group">
                     <label for="message">
                         <i class="fas fa-heart"></i>
-                        Your Message
+                        <span data-en="Your Message" data-ar="رسالتك">Your Message</span>
                     </label>
-                    <textarea id="message" name="message" rows="4" placeholder="Share your heartfelt wishes for the happy couple..." required></textarea>
+                    <textarea id="message" name="message" rows="4" data-placeholder-en="Share your heartfelt wishes for the happy couple..." data-placeholder-ar="شارك تمنياتك الصادقة للزوجين السعيدين..." placeholder="Share your heartfelt wishes for the happy couple..." required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">
                     <i class="fab fa-telegram"></i>
-                    Send Congratulations via Telegram
+                    <span data-en="Send Congratulations via Telegram" data-ar="أرسل التهاني عبر تيليجرام">Send Congratulations via Telegram</span>
                 </button>
             </form>
         </div>
@@ -519,11 +596,51 @@
     <!-- Success Message -->
     <div class="success-message" id="successMessage">
         <i class="fas fa-heart-circle-check" style="color: #ff69b4; font-size: 3rem; margin-bottom: 1rem;"></i>
-        <h3>🎉 Your Wish Has Been Sent!</h3>
-        <p>Thank you for celebrating with us – your love means the world! 💕</p>
+        <h3 data-en="🎉 Your Wish Has Been Sent!" data-ar="🎉 تم إرسال تمنياتك!">🎉 Your Wish Has Been Sent!</h3>
+        <p data-en="Thank you for celebrating with us – your love means the world! 💕" data-ar="شكراً لك على الاحتفال معنا - حبك يعني لنا العالم! 💕">Thank you for celebrating with us – your love means the world! 💕</p>
     </div>
 
     <script>
+        let currentLanguage = 'en';
+
+        // Language switching function
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            const body = document.body;
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            // Update active button
+            langButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Toggle RTL class
+            if (lang === 'ar') {
+                body.classList.add('rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+            } else {
+                body.classList.remove('rtl');
+                document.documentElement.setAttribute('lang', 'en');
+            }
+            
+            // Update all text content
+            const elements = document.querySelectorAll('[data-en]');
+            elements.forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.textContent = text;
+                }
+            });
+            
+            // Update placeholders
+            const inputs = document.querySelectorAll('[data-placeholder-en]');
+            inputs.forEach(input => {
+                const placeholder = input.getAttribute(`data-placeholder-${lang}`);
+                if (placeholder) {
+                    input.setAttribute('placeholder', placeholder);
+                }
+            });
+        }
+
         // Create floating hearts with FontAwesome icons
         function createHeart() {
             const heart = document.createElement('div');
@@ -553,7 +670,7 @@
         }
 
         // Handle form submission
-            document.getElementById('congratulationsForm').addEventListener('submit', function(e) {
+        document.getElementById('congratulationsForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
             const name = document.getElementById('name').value.trim();
@@ -590,6 +707,7 @@
                 });
             }
         });
+
         // Show success message
         function showSuccessMessage() {
             const successMsg = document.getElementById('successMessage');
