@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnia & Abdelrahman - Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ffeef8 0%, #f0e6ff 50%, #e6f3ff 100%);
+            min-height: 100vh;
+        }
+
+        /* Floating Hearts Animation */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        .heart:nth-child(odd) {
+            animation-delay: -2s;
+            color: #ff1493;
+        }
+
+        .heart:nth-child(3n) {
+            animation-delay: -4s;
+            color: #ff6b9d;
+        }
+
+        .heart:nth-child(4n) {
+            animation-delay: -6s;
+            color: #ffc0cb;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+        .wedding-card {
+            background: linear-gradient(135deg, #c28787 0%, #fd7171 50%, #5c5252 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            max-width: 700px;
+            width: 100%;
+            animation: slideUp 1.2s ease-out;
+            border: 3px solid rgba(255, 182, 193, 0.4);
+            position: relative;
+            
+        }
+
+        .wedding-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #ffffff 70%, #f1f5f9 100%);
+            border-radius: 32px;
+            z-index: -1;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .wedding-header {
+            margin-bottom: 2rem;
+        }
+
+        .wedding-title {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .couple-names-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .bride-name, .groom-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            font-weight: 400;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .ampersand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff69b4;
+            animation: pulse 2s infinite;
+            margin: 0 0.5rem;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.8));
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .wedding-date {
+            font-size: 1.3rem;
+            color: #555;
+            margin: 2rem 0;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .wedding-quote {
+            font-style: italic;
+            color: #777;
+            font-size: 1.1rem;
+            margin: 2rem 0;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .wedding-quote::before,
+        .wedding-quote::after {
+            content: '"';
+            font-size: 2rem;
+            color: #ff69b4;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .decorative-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            color: #ff69b4;
+            font-size: 1.5rem;
+        }
+
+        .decorative-divider i {
+            animation: bounce 2s infinite;
+        }
+
+        .decorative-divider i:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .decorative-divider i:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* Congratulations Section */
+        .congratulations-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .congratulations-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #ffffff 70%, #f1f5f9 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            max-width: 550px;
+            width: 100%;
+            animation: fadeIn 1.2s ease-out 0.5s both;
+            border: 3px solid rgba(255, 182, 193, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            font-weight: 400;
+            color: #c44569;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: #555;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid #f0f0f0;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff69b4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 1);
+        }
+        textarea{
+            resize: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .bride-name, .groom-name {
+                font-size: 2.8rem;
+            }
+            
+            .couple-names-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .ampersand {
+                font-size: 2rem;
+                margin: 0;
+            }
+            
+            .wedding-card,
+            .congratulations-card {
+                padding: 2.5rem 2rem;
+                margin: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .wedding-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            color: #ff69b4;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        /* Success message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            display: none;
+            border: 2px solid #ff69b4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="wedding-card">
+            <div class="wedding-header">
+                <div class="decorative-divider">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-ring"></i>
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h2 class="wedding-title">You're Invited to Celebrate</h2>
+            </div>
+            
+            <div class="couple-names-container">
+                <span class="bride-name">Abdelrahman</span>
+                <span class="ampersand">&</span>
+                <span class="groom-name">Omnia</span>
+            </div>
+            
+            <div class="decorative-divider">
+                <i class="fas fa-dove"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-dove"></i>
+            </div>
+            
+            <p class="wedding-date">
+                <i class="fas fa-calendar-heart"></i>
+                Together Forever
+            </p>
+            
+            <p class="wedding-quote">
+                Two souls with but a single thought, two hearts that beat as one
+            </p>
+            
+            <div class="decorative-divider">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-infinity"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToSection('congratulations')">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Congratulations Section -->
+    <section class="congratulations-section" id="congratulations">
+        <div class="congratulations-card">
+            <h2 class="section-title">
+                <i class="fas fa-envelope-heart"></i>
+                Send Your Wishes
+            </h2>
+            <form id="congratulationsForm">
+                <div class="form-group">
+                    <label for="name">
+                        <i class="fas fa-user"></i>
+                        Your Name
+                    </label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="message">
+                        <i class="fas fa-heart"></i>
+                        Your Message
+                    </label>
+                    <textarea id="message" name="message" rows="4" placeholder="Share your heartfelt wishes for the happy couple..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-telegram"></i>
+                    Send Congratulations via Telegram
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-heart-circle-check" style="color: #ff69b4; font-size: 3rem; margin-bottom: 1rem;"></i>
+        <h3>🎉 Your Wish Has Been Sent!</h3>
+        <p>Thank you for celebrating with us – your love means the world! 💕</p>
+    </div>
+
+    <script>
+        // Create floating hearts with FontAwesome icons
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            const heartIcons = ['fas fa-heart', 'fas fa-heart-pulse', 'far fa-heart', 'fas fa-heart-circle-plus'];
+            const randomIcon = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            heart.innerHTML = `<i class="${randomIcon}"></i>`;
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 8 + 12) + 'px';
+            
+            document.getElementById('heartsContainer').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Create hearts continuously
+        setInterval(createHeart, 1200);
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Handle form submission
+            document.getElementById('congratulationsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (name && message) {
+                const telegramToken = '7855076283:AAGQ0BrgUTi7AGrqdHyislakivrvZXi2r5k';
+                const telegramChatId = '-1002539300272';
+
+                const telegramMessage = `🎉 Congratulations to Abdelrahman & Omnia! 💕\n\n👤 From: ${name}\n\n💌 Message: ${message}\n\n🥂 Wishing you both a lifetime of love and happiness! ✨`;
+
+                fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: telegramChatId,
+                        text: telegramMessage
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        createCelebration();
+                        showSuccessMessage();
+                        document.getElementById('congratulationsForm').reset();
+                    } else {
+                        alert('Error sending message.');
+                        console.error(data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error sending Telegram message:', error);
+                    alert('Failed to send your message. Please try again later.');
+                });
+            }
+        });
+        // Show success message
+        function showSuccessMessage() {
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+            successMsg.style.animation = 'fadeIn 0.5s ease-out';
+            setTimeout(() => {
+                successMsg.style.animation = 'fadeOut 0.5s ease-out';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 500);
+            }, 4000);
+        }
+
+        // Celebration effect with FontAwesome icons
+        function createCelebration() {
+            const celebrationIcons = [
+                'fas fa-heart', 'fas fa-star', 'fas fa-sparkles', 
+                'fas fa-heart-pulse', 'fas fa-ring', 'fas fa-dove',
+                'fas fa-heart-circle-plus', 'fas fa-heart-circle-check'
+            ];
+            
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const celebrationElement = document.createElement('div');
+                    const randomIcon = celebrationIcons[Math.floor(Math.random() * celebrationIcons.length)];
+                    celebrationElement.innerHTML = `<i class="${randomIcon}"></i>`;
+                    celebrationElement.style.position = 'fixed';
+                    celebrationElement.style.left = Math.random() * 100 + 'vw';
+                    celebrationElement.style.top = '50%';
+                    celebrationElement.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    celebrationElement.style.color = ['#ff69b4', '#ff1493', '#ff6b9d', '#ffc0cb', '#c44569'][Math.floor(Math.random() * 5)];
+                    celebrationElement.style.pointerEvents = 'none';
+                    celebrationElement.style.zIndex = '1000';
+                    celebrationElement.style.animation = 'celebration 3s ease-out forwards';
+                    
+                    document.body.appendChild(celebrationElement);
+                    
+                    setTimeout(() => {
+                        celebrationElement.remove();
+                    }, 3000);
+                }, i * 80);
+            }
+        }
+
+        // Add celebration and fadeOut animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes celebration {
+                0% {
+                    transform: translateY(0) scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: translateY(-300px) scale(1.2) rotate(180deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-600px) scale(0) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add entrance animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.wedding-card, .congratulations-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.decorative-divider i').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.3) rotate(15deg)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
